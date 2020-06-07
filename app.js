@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const { PORT, DB_ADRESS } = require('./config');
 const routes = require('./routes');
@@ -14,6 +16,9 @@ mongoose.connect(DB_ADRESS, {
   useFindAndModify: false,
 });
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(requestLogger);
 app.use(routes);
 app.use(errorLogger);
