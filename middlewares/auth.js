@@ -1,4 +1,7 @@
+const jwt = require('jsonwebtoken');
 
-module.exports = () => {
+const config = require('../config');
+
+module.exports.auth = () => {
     
 }
