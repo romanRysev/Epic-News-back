@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../models/user');
 const UnauthorizedError = require('../errors/UnauthorizedError');
+const { loginErrorMessage } = require('../const');
 const config = require('../config');
 
 const signIn = (req, res, next) => {
@@ -11,12 +12,12 @@ const signIn = (req, res, next) => {
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        throw new UnauthorizedError('Неправильные почта или пароль');
+        throw new UnauthorizedError(loginErrorMessage);
       }
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
-            throw new UnauthorizedError('Неправильные почта или пароль');
+            throw new UnauthorizedError(loginErrorMessage);
           }
           const token = jwt.sign({ _id: user._id }, config.JWT_SECRET, { expiresIn: '7d' });
           res.cookie('jwt', token, {

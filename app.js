@@ -8,6 +8,7 @@ const { PORT, DB_ADRESS } = require('./config');
 const routes = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const error = require('./middlewares/errors.js');
+const limiter = require('./middlewares/limiter');
 
 const app = express();
 
@@ -17,6 +18,7 @@ mongoose.connect(DB_ADRESS, {
   useFindAndModify: false,
 });
 
+app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

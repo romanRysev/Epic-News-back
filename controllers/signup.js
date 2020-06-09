@@ -7,7 +7,7 @@ const signUp = (req, res, next) => {
 
   bcrypt.hash(password, 10)
     .then((hash) => User.create({ name, email, password: hash }))
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send({ data: user.omitPrivate() }))
     .catch(next);
 };
 

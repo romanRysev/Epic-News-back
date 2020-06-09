@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const config = require('../config');
 const UnauthorizedError = require('../errors/UnauthorizedError.js');
+const { unauthorizedMessage } = require('../const');
 
 const auth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -9,7 +10,7 @@ const auth = (req, res, next) => {
   try {
     payload = jwt.verify(token, config.JWT_SECRET);
   } catch (err) {
-    const error = new UnauthorizedError('Unauthorized');
+    const error = new UnauthorizedError(unauthorizedMessage);
     next(error);
   }
   req.user = payload;
