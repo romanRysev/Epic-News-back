@@ -1,6 +1,6 @@
 # Epic-News-back
 
-> server for project Epic News (https://...)
+> server for project Epic News (https://api.epic-news.site)
 
 ver. 1.0.0
 
@@ -15,6 +15,6 @@ $ npm install
 # database start at localhost:27017
 $ mongod
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:3001
 $ npm run dev
 
