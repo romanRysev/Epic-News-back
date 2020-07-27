@@ -12,11 +12,7 @@ const error = require('./middlewares/errors.js');
 const limiter = require('./middlewares/limiter');
 
 const corsOptions = {
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'x-requested-with', 'origin', 'accept', 'x-access-token', 'Authorization'],
+  origin: 'http://localhost:8080',
   credential: true,
 };
 
