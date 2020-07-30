@@ -13,7 +13,7 @@ const limiter = require('./middlewares/limiter');
 
 const corsOptions = {
   origin: 'http://localhost:8080',
-  credential: true,
+  credentials: true,
 };
 
 const app = express();
