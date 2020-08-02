@@ -10,7 +10,7 @@ const signIn = (req, res, next) => {
   const { email, password, mode } = req.body;
 
   if (mode == "logout") {
-    res.clearCookie("jwt").send({ Message: "Выход из профиля" });
+    res.clearCookie("jwt", { path: '/',sameSite: 'none', secure: true }).send({ Message: "Выход из профиля" });
   } else {
     User.findOne({ email })
       .select("+password")
@@ -32,6 +32,7 @@ const signIn = (req, res, next) => {
                 maxAge: 3600000 * 24 * 7,
                 httpOnly: true,
                 sameSite: 'none',
+                secure: true,
               })
               .send({ Message: "OK" });
           })

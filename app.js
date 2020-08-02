@@ -12,7 +12,7 @@ const error = require('./middlewares/errors.js');
 const limiter = require('./middlewares/limiter');
 
 const corsOptions = {
-  origin: 'http://localhost:8080',
+  origin: ['http://localhost:8080','https://localhost:8080', 'https://romanrysev.github.io'],
   credentials: true,
 };
 
