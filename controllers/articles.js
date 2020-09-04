@@ -6,7 +6,7 @@ const { forbiddenMessage } = require('../const');
 const { successfulMessage } = require('../const');
 
 const getArticles = (req, res, next) => {
-  Article.find({})
+  Article.find({owner: `${req.user._id}`})
     .then((article) => { res.send({ data: article }); })
     .catch(next);
 };
